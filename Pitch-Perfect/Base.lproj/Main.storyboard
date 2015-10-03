@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B22c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tUX-8f-cUR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Record-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,6 +30,7 @@
                                 <state key="normal" image="stopButton"/>
                                 <connections>
                                     <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="msR-yB-IJN"/>
+                                    <segue destination="k4a-BX-KzN" kind="show" id="Jc6-a8-cZE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-u6-Vwz">
@@ -51,17 +53,98 @@
                             <constraint firstItem="WEa-u6-Vwz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zcD-6H-Edy"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Record" id="SN4-9w-PGS"/>
                     <connections>
                         <outlet property="recordingLabel" destination="ZcI-aV-n8K" id="NK9-vS-mO8"/>
+                        <outlet property="stopButon" destination="ygP-bc-xYy" id="Xsd-5d-Yi8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="488"/>
+            <point key="canvasLocation" x="204" y="450"/>
+        </scene>
+        <!--Play Sounds View Controller-->
+        <scene sceneID="q3N-6r-TzO">
+            <objects>
+                <viewController id="k4a-BX-KzN" customClass="PlaySoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F9g-NR-oZ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="nFv-rx-NVq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="thQ-GN-j3s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMz-2r-ARr" userLabel="slowButton">
+                                <rect key="frame" x="51" y="86" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="slowButton"/>
+                                <connections>
+                                    <action selector="playSlowAudioTapped:" destination="k4a-BX-KzN" eventType="touchUpInside" id="r0a-ck-Atd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLv-g9-g8I" userLabel="fastButton">
+                                <rect key="frame" x="449" y="86" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="fastButton"/>
+                                <connections>
+                                    <action selector="playFastAudioTapped:" destination="k4a-BX-KzN" eventType="touchUpInside" id="jYx-Ib-nzn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHg-xU-gjS">
+                                <rect key="frame" x="275" y="530" width="50" height="50"/>
+                                <animations/>
+                                <state key="normal" image="stopButton"/>
+                                <connections>
+                                    <action selector="stopPressed:" destination="k4a-BX-KzN" eventType="touchUpInside" id="CuL-9Z-gZh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YMz-2r-ARr" firstAttribute="top" secondItem="F9g-NR-oZ9" secondAttribute="bottom" constant="22" id="AUo-KE-9zu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nLv-g9-g8I" secondAttribute="trailing" constant="31" id="J67-ja-plH"/>
+                            <constraint firstItem="GHg-xU-gjS" firstAttribute="centerX" secondItem="thQ-GN-j3s" secondAttribute="centerX" id="KeT-6g-7l8"/>
+                            <constraint firstItem="YMz-2r-ARr" firstAttribute="leading" secondItem="thQ-GN-j3s" secondAttribute="leadingMargin" constant="31" id="Lj5-bh-p8Z"/>
+                            <constraint firstItem="nFv-rx-NVq" firstAttribute="top" secondItem="GHg-xU-gjS" secondAttribute="bottom" constant="20" id="TLF-uS-ng3"/>
+                            <constraint firstItem="nLv-g9-g8I" firstAttribute="centerY" secondItem="YMz-2r-ARr" secondAttribute="centerY" id="Yc2-va-PFD"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fastPlayButton" destination="nLv-g9-g8I" id="5fX-gm-YEa"/>
+                        <outlet property="slowPlayButton" destination="YMz-2r-ARr" id="0fY-nc-E0H"/>
+                        <outlet property="stopPlayButton" destination="GHg-xU-gjS" id="a11-Kq-Xaf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xac-ZV-LnD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="445"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5cA-d0-Avl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tUX-8f-cUR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uvC-SJ-y3L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="efW-ms-87h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xoW-JS-L7b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-608" y="450"/>
         </scene>
     </scenes>
     <resources>
+        <image name="fastButton" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
+        <image name="slowButton" width="100" height="100"/>
         <image name="stopButton" width="50" height="50"/>
     </resources>
 </document>
