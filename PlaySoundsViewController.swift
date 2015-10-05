@@ -12,6 +12,7 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
     
     var player:AVAudioPlayer = AVAudioPlayer();
+    var receivedAudio:RecordedAudio!
     
     @IBOutlet weak var slowPlayButton: UIButton!
     @IBOutlet weak var fastPlayButton: UIButton!
@@ -58,16 +59,15 @@ class PlaySoundsViewController: UIViewController {
     }
     
     func preparePlayer () throws {
-        if let filePathURL = NSBundle.mainBundle().URLForResource("movie_quote", withExtension: "mp3") {
-            try player = AVAudioPlayer(contentsOfURL: filePathURL)
-            player.prepareToPlay()
-            player.enableRate = true
-            
+        guard let filePathURL = receivedAudio.filePathURL
+            else {
+                print("Error getting audo file path")
+                throw AudioPlayerError.FileNotFound
         }
-        else {
-            print("Error getting audo file path")
-            throw AudioPlayerError.FileNotFound
-        }
+        
+        try player = AVAudioPlayer(contentsOfURL: filePathURL)
+        player.prepareToPlay()
+        player.enableRate = true
     }
     
 }

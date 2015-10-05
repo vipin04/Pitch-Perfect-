@@ -8,7 +8,7 @@
         <!--Record-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -30,7 +30,6 @@
                                 <state key="normal" image="stopButton"/>
                                 <connections>
                                     <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="msR-yB-IJN"/>
-                                    <segue destination="k4a-BX-KzN" kind="show" id="Jc6-a8-cZE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-u6-Vwz">
@@ -57,11 +56,12 @@
                     <connections>
                         <outlet property="recordingLabel" destination="ZcI-aV-n8K" id="NK9-vS-mO8"/>
                         <outlet property="stopButon" destination="ygP-bc-xYy" id="Xsd-5d-Yi8"/>
+                        <segue destination="k4a-BX-KzN" kind="show" identifier="stopRecording" id="VZO-H5-RKk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="450"/>
+            <point key="canvasLocation" x="295" y="425"/>
         </scene>
         <!--Play Sounds View Controller-->
         <scene sceneID="q3N-6r-TzO">
