@@ -11,8 +11,10 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     
-    var player:AVAudioPlayer = AVAudioPlayer();
+    var audioPlayer:AVAudioPlayer = AVAudioPlayer();
     var receivedAudio:RecordedAudio!
+    var audioEngine:AVAudioEngine!
+    var audioFile:AVAudioFile!
     
     @IBOutlet weak var slowPlayButton: UIButton!
     @IBOutlet weak var fastPlayButton: UIButton!
@@ -22,7 +24,7 @@ class PlaySoundsViewController: UIViewController {
         super.viewDidLoad()
         
         do {
-            try preparePlayer()
+            try prepareaudioPlayer()
         }
         catch {
             print("Error occured", error)
@@ -41,15 +43,57 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopPressed(sender: UIButton) {
-        player.stop()
+        audioPlayer.stop()
+        
+    }
+    
+    @IBAction func playChipmunkAudio(sender: AnyObject) {
+        do {
+            try playAudioWithVariablePitch(1000)
+        }
+        catch let unknownError {
+            print(" Unknown error occured: \(unknownError).")
+        }
+
+    }
+    
+    
+    @IBAction func playDarthVaderAudio(sender: UIButton) {
+        do {
+            try playAudioWithVariablePitch(-1000)
+        }
+        catch let unknownError {
+            print(" Unknown error occured: \(unknownError).")
+        }
+    }
+    
+    func playAudioWithVariablePitch(pitch:Float) throws {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try audioEngine.start()
+        
+        audioPlayerNode.play()
         
     }
     
     func playAudioWithSpeed(playBackSpeed: Float) {
-        player.stop()
-        player.rate = playBackSpeed
-        player.currentTime = 0.0
-        player.play()
+        audioPlayer.stop()
+        audioPlayer.rate = playBackSpeed
+        audioPlayer.currentTime = 0.0
+        audioPlayer.play()
     }
     
     func disableButtons () {
@@ -58,16 +102,18 @@ class PlaySoundsViewController: UIViewController {
         stopPlayButton.enabled = false
     }
     
-    func preparePlayer () throws {
+    func prepareaudioPlayer () throws {
         guard let filePathURL = receivedAudio.filePathURL
             else {
                 print("Error getting audo file path")
                 throw AudioPlayerError.FileNotFound
         }
         
-        try player = AVAudioPlayer(contentsOfURL: filePathURL)
-        player.prepareToPlay()
-        player.enableRate = true
+        try audioPlayer = AVAudioPlayer(contentsOfURL: filePathURL)
+        try audioFile =  AVAudioFile(forReading: filePathURL)
+        audioPlayer.prepareToPlay()
+        audioPlayer.enableRate = true
+        audioEngine = AVAudioEngine()
     }
     
 }

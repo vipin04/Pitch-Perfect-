@@ -99,16 +99,36 @@
                                     <action selector="stopPressed:" destination="k4a-BX-KzN" eventType="touchUpInside" id="CuL-9Z-gZh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsP-wP-hPq" userLabel="chipMunk">
+                                <rect key="frame" x="51" y="273" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="chipMunkButton"/>
+                                <connections>
+                                    <action selector="playChipmunkAudio:" destination="k4a-BX-KzN" eventType="touchUpInside" id="3bW-gm-vsO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNN-Ph-AlQ" userLabel="darthVader">
+                                <rect key="frame" x="449" y="273" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="darthVader"/>
+                                <connections>
+                                    <action selector="playDarthVaderAudio:" destination="k4a-BX-KzN" eventType="touchUpInside" id="Bp4-dU-wLD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="MsP-wP-hPq" firstAttribute="top" secondItem="YMz-2r-ARr" secondAttribute="bottom" constant="87" id="2VG-lI-pAK"/>
+                            <constraint firstItem="MsP-wP-hPq" firstAttribute="centerX" secondItem="YMz-2r-ARr" secondAttribute="centerX" id="47z-0C-Z4l"/>
                             <constraint firstItem="YMz-2r-ARr" firstAttribute="top" secondItem="F9g-NR-oZ9" secondAttribute="bottom" constant="22" id="AUo-KE-9zu"/>
+                            <constraint firstItem="PNN-Ph-AlQ" firstAttribute="centerX" secondItem="nLv-g9-g8I" secondAttribute="centerX" id="DUG-f5-9ou"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nLv-g9-g8I" secondAttribute="trailing" constant="31" id="J67-ja-plH"/>
                             <constraint firstItem="GHg-xU-gjS" firstAttribute="centerX" secondItem="thQ-GN-j3s" secondAttribute="centerX" id="KeT-6g-7l8"/>
                             <constraint firstItem="YMz-2r-ARr" firstAttribute="leading" secondItem="thQ-GN-j3s" secondAttribute="leadingMargin" constant="31" id="Lj5-bh-p8Z"/>
                             <constraint firstItem="nFv-rx-NVq" firstAttribute="top" secondItem="GHg-xU-gjS" secondAttribute="bottom" constant="20" id="TLF-uS-ng3"/>
                             <constraint firstItem="nLv-g9-g8I" firstAttribute="centerY" secondItem="YMz-2r-ARr" secondAttribute="centerY" id="Yc2-va-PFD"/>
+                            <constraint firstItem="PNN-Ph-AlQ" firstAttribute="top" secondItem="nLv-g9-g8I" secondAttribute="bottom" constant="87" id="k2a-RF-qJo"/>
                         </constraints>
                     </view>
                     <connections>
@@ -142,6 +162,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chipMunkButton" width="100" height="100"/>
+        <image name="darthVader" width="100" height="100"/>
         <image name="fastButton" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="slowButton" width="100" height="100"/>
