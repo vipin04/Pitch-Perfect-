@@ -40,8 +40,8 @@
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iJg-EX-ZlD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on stop when finished recoding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRc-8L-urT">
-                                <rect key="frame" x="164" y="559" width="273" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRc-8L-urT">
+                                <rect key="frame" x="332" y="559" width="36" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -55,6 +55,13 @@
                                     <action selector="pausePlayButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T1i-xf-G8I"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pause" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXB-ZF-MtS" userLabel="PausePlayLabel">
+                                <rect key="frame" x="227" y="559" width="47" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -62,9 +69,12 @@
                             <constraint firstItem="7AH-St-GhU" firstAttribute="centerY" secondItem="ygP-bc-xYy" secondAttribute="centerY" id="1P2-CT-so5"/>
                             <constraint firstItem="ZcI-aV-n8K" firstAttribute="top" secondItem="WEa-u6-Vwz" secondAttribute="bottom" constant="8" id="5t6-zH-aiG"/>
                             <constraint firstItem="WEa-u6-Vwz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ClP-O5-OTL"/>
+                            <constraint firstItem="kRc-8L-urT" firstAttribute="centerX" secondItem="ygP-bc-xYy" secondAttribute="centerX" id="MoL-40-95I"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ygP-bc-xYy" secondAttribute="bottom" constant="60" id="PDd-aN-v81"/>
                             <constraint firstItem="ygP-bc-xYy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="50" id="bVD-VH-A8w"/>
+                            <constraint firstItem="hXB-ZF-MtS" firstAttribute="centerY" secondItem="kRc-8L-urT" secondAttribute="centerY" id="bdg-hb-SeW"/>
                             <constraint firstItem="kRc-8L-urT" firstAttribute="centerX" secondItem="ygP-bc-xYy" secondAttribute="centerX" id="gaf-4Y-f5P"/>
+                            <constraint firstItem="hXB-ZF-MtS" firstAttribute="centerX" secondItem="7AH-St-GhU" secondAttribute="centerX" id="ha5-R4-dgg"/>
                             <constraint firstItem="kRc-8L-urT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hr0-mQ-YZI"/>
                             <constraint firstItem="ygP-bc-xYy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pfD-Nd-3NB"/>
                             <constraint firstItem="ZcI-aV-n8K" firstAttribute="centerX" secondItem="WEa-u6-Vwz" secondAttribute="centerX" id="rTx-Pd-EV8"/>
@@ -74,18 +84,20 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="gaf-4Y-f5P"/>
                                 <exclude reference="pfD-Nd-3NB"/>
+                                <exclude reference="gaf-4Y-f5P"/>
+                                <exclude reference="hr0-mQ-YZI"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="SN4-9w-PGS"/>
                     <connections>
-                        <outlet property="finishRecordingLabel" destination="kRc-8L-urT" id="Qce-go-ZzX"/>
                         <outlet property="pausePlayButton" destination="7AH-St-GhU" id="I7m-9z-z9D"/>
+                        <outlet property="pausePlayLabel" destination="hXB-ZF-MtS" id="o8I-RC-vhn"/>
                         <outlet property="recordButton" destination="WEa-u6-Vwz" id="LAv-F9-MoO"/>
-                        <outlet property="recordingLabel" destination="ZcI-aV-n8K" id="NK9-vS-mO8"/>
+                        <outlet property="recordingStatuslLabel" destination="ZcI-aV-n8K" id="xV8-4C-kgQ"/>
                         <outlet property="stopButon" destination="ygP-bc-xYy" id="Xsd-5d-Yi8"/>
+                        <outlet property="stopLabel" destination="kRc-8L-urT" id="CZ6-JA-Cjr"/>
                         <segue destination="k4a-BX-KzN" kind="show" identifier="stopRecording" id="VZO-H5-RKk"/>
                     </connections>
                 </viewController>

@@ -19,10 +19,12 @@ enum RecordingState {
 class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var recordButton: UIButton!
-    @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var stopButon: UIButton!
     @IBOutlet weak var pausePlayButton: UIButton!
-    @IBOutlet weak var finishRecordingLabel: UILabel!
+    
+    @IBOutlet weak var recordingStatuslLabel: UILabel!
+    @IBOutlet weak var stopLabel: UILabel!
+    @IBOutlet weak var pausePlayLabel: UILabel!
     
     //Declared Globally
     var audioRecorder:AVAudioRecorder!
@@ -76,7 +78,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func pausePlayButtonTapped(sender: AnyObject) {
         switch recordingState {
         case .Paused:
-            recordingLabel.text = "Recording"
+            recordingStatuslLabel.text = "Recording"
+            pausePlayLabel.text = "Pause"
             audioRecorder.record()
             recordingState = .Recording
             if let playButtonImage = UIImage(named: "pauseButton") {
@@ -84,7 +87,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             }
 
         case .Recording:
-            recordingLabel.text = "Paused"
+            recordingStatuslLabel.text = "Paused"
+            pausePlayLabel.text = "Resume"
             audioRecorder.pause()
             recordingState = .Paused
             if let playButtonImage = UIImage(named: "playButton") {
@@ -99,7 +103,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func stopButtonTapped(sender: AnyObject) {
         recordingState = .Stopped
-        recordingLabel.hidden = true
+        pausePlayLabel.text = "Pause"
+        recordingStatuslLabel.hidden = true
         
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
@@ -131,10 +136,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func visualSetupBeforeRecordStart () {
         recordButton.enabled = true
-        recordingLabel.text = "Tap on Mic to start recording voice"
+        recordingStatuslLabel.text = "Tap on Mic to start recording voice"
+        pausePlayLabel.text = "Pause"
         pausePlayButton.hidden = true
+        pausePlayLabel.hidden = true
         stopButon.hidden = true
-        finishRecordingLabel.hidden = true
+        stopLabel.hidden = true
         
         if let playButtonImage = UIImage(named: "pauseButton") {
             pausePlayButton.setImage(playButtonImage, forState: .Normal)
@@ -144,10 +151,11 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func visualSetupAfterRecordStart () {
         recordButton.enabled = false
-        recordingLabel.text = "Recording"
+        recordingStatuslLabel.text = "Recording"
         pausePlayButton.hidden = false
+        pausePlayLabel.hidden = false
         stopButon.hidden = false
-        finishRecordingLabel.hidden = false
+        stopLabel.hidden = false
     }
     
 }
