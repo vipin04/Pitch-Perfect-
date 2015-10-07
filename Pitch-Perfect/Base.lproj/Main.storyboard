@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recording" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcI-aV-n8K">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recording" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcI-aV-n8K">
                                 <rect key="frame" x="263" y="358" width="74" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -25,35 +25,65 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygP-bc-xYy">
-                                <rect key="frame" x="275" y="516" width="50" height="50"/>
+                                <rect key="frame" x="325" y="490" width="50" height="50"/>
                                 <animations/>
                                 <state key="normal" image="stopButton"/>
                                 <connections>
                                     <action selector="stopButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="msR-yB-IJN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-u6-Vwz">
-                                <rect key="frame" x="250" y="225" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEa-u6-Vwz" userLabel="Mic Button">
+                                <rect key="frame" x="250" y="250" width="100" height="100"/>
                                 <animations/>
                                 <state key="normal" image="microphone"/>
                                 <connections>
                                     <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iJg-EX-ZlD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap on stop when finished recoding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRc-8L-urT">
+                                <rect key="frame" x="164" y="559" width="273" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7AH-St-GhU" userLabel="Pause Button">
+                                <rect key="frame" x="225" y="490" width="50" height="50"/>
+                                <animations/>
+                                <state key="normal" image="pauseButton"/>
+                                <connections>
+                                    <action selector="pausePlayButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T1i-xf-G8I"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7AH-St-GhU" firstAttribute="centerY" secondItem="ygP-bc-xYy" secondAttribute="centerY" id="1P2-CT-so5"/>
                             <constraint firstItem="ZcI-aV-n8K" firstAttribute="top" secondItem="WEa-u6-Vwz" secondAttribute="bottom" constant="8" id="5t6-zH-aiG"/>
                             <constraint firstItem="WEa-u6-Vwz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ClP-O5-OTL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ygP-bc-xYy" secondAttribute="bottom" constant="34" id="PDd-aN-v81"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ygP-bc-xYy" secondAttribute="bottom" constant="60" id="PDd-aN-v81"/>
+                            <constraint firstItem="ygP-bc-xYy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="50" id="bVD-VH-A8w"/>
+                            <constraint firstItem="kRc-8L-urT" firstAttribute="centerX" secondItem="ygP-bc-xYy" secondAttribute="centerX" id="gaf-4Y-f5P"/>
+                            <constraint firstItem="kRc-8L-urT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hr0-mQ-YZI"/>
                             <constraint firstItem="ygP-bc-xYy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pfD-Nd-3NB"/>
                             <constraint firstItem="ZcI-aV-n8K" firstAttribute="centerX" secondItem="WEa-u6-Vwz" secondAttribute="centerX" id="rTx-Pd-EV8"/>
+                            <constraint firstItem="kRc-8L-urT" firstAttribute="top" secondItem="ygP-bc-xYy" secondAttribute="bottom" constant="19" id="u7M-11-cVg"/>
+                            <constraint firstItem="7AH-St-GhU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-50" id="yFH-LU-kuK"/>
                             <constraint firstItem="WEa-u6-Vwz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zcD-6H-Edy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="gaf-4Y-f5P"/>
+                                <exclude reference="pfD-Nd-3NB"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="SN4-9w-PGS"/>
                     <connections>
+                        <outlet property="finishRecordingLabel" destination="kRc-8L-urT" id="Qce-go-ZzX"/>
+                        <outlet property="pausePlayButton" destination="7AH-St-GhU" id="I7m-9z-z9D"/>
+                        <outlet property="recordButton" destination="WEa-u6-Vwz" id="LAv-F9-MoO"/>
                         <outlet property="recordingLabel" destination="ZcI-aV-n8K" id="NK9-vS-mO8"/>
                         <outlet property="stopButon" destination="ygP-bc-xYy" id="Xsd-5d-Yi8"/>
                         <segue destination="k4a-BX-KzN" kind="show" identifier="stopRecording" id="VZO-H5-RKk"/>
@@ -166,6 +196,7 @@
         <image name="darthVader" width="100" height="100"/>
         <image name="fastButton" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
+        <image name="pauseButton" width="50" height="50"/>
         <image name="slowButton" width="100" height="100"/>
         <image name="stopButton" width="50" height="50"/>
     </resources>
