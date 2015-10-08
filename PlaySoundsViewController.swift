@@ -47,6 +47,9 @@ class PlaySoundsViewController: UIViewController {
         
     }
     
+    /**
+    Play high pitch sound
+    */
     @IBAction func playChipmunkAudio(sender: AnyObject) {
         do {
             try playAudioWithVariablePitch(1000)
@@ -58,6 +61,11 @@ class PlaySoundsViewController: UIViewController {
     }
     
     
+    
+    
+    /**
+    Play low pitch sound
+    */
     @IBAction func playDarthVaderAudio(sender: UIButton) {
         do {
             try playAudioWithVariablePitch(-1000)
@@ -67,6 +75,16 @@ class PlaySoundsViewController: UIViewController {
         }
     }
     
+    
+    
+    
+    /**
+    Helper function to play variable pitch sound
+    
+    - parameter pitch: value of pitch variying from -2400 to 2400
+    
+    - throws: throws error in case fails to start playing audio
+    */
     func playAudioWithVariablePitch(pitch:Float) throws {
         audioPlayer.stop()
         audioEngine.stop()
@@ -89,6 +107,9 @@ class PlaySoundsViewController: UIViewController {
         
     }
     
+    
+
+    
     func playAudioWithSpeed(playBackSpeed: Float) {
         audioPlayer.stop()
         audioEngine.stop()
@@ -104,6 +125,13 @@ class PlaySoundsViewController: UIViewController {
         stopPlayButton.enabled = false
     }
     
+    
+    
+    /**
+    Helper method to check if audio player can play the file and enable its default settings
+    
+    - throws: throws exception if audio file could not be read
+    */
     func prepareaudioPlayer () throws {
         guard let filePathURL = receivedAudio.filePathURL
             else {

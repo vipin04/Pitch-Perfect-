@@ -33,20 +33,22 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         visualSetupBeforeRecordStart()
     }
     
     
+
     @IBAction func recordAudio(sender: UIButton) {
         print("in recordAutdio")
         visualSetupAfterRecordStart()
@@ -129,7 +131,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         
     }
     
-    
+    /**
+    Hide/Unhide screen items which are relevant before starting voice recording
+    */
     func visualSetupBeforeRecordStart () {
         recordButton.enabled = true
         recordingStatuslLabel.text = "Tap to Record!"
