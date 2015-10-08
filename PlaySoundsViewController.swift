@@ -43,8 +43,7 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopPressed(sender: UIButton) {
-        audioPlayer.stop()
-        
+        stopAudioPlayer()
     }
     
     /**
@@ -86,9 +85,7 @@ class PlaySoundsViewController: UIViewController {
     - throws: throws error in case fails to start playing audio
     */
     func playAudioWithVariablePitch(pitch:Float) throws {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAudioPlayer()
         
         let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -109,11 +106,8 @@ class PlaySoundsViewController: UIViewController {
     
     
 
-    
     func playAudioWithSpeed(playBackSpeed: Float) {
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAudioPlayer()
         audioPlayer.rate = playBackSpeed
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
@@ -125,7 +119,11 @@ class PlaySoundsViewController: UIViewController {
         stopPlayButton.enabled = false
     }
     
-    
+    func stopAudioPlayer () {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+    }
     
     /**
     Helper method to check if audio player can play the file and enable its default settings
@@ -135,7 +133,7 @@ class PlaySoundsViewController: UIViewController {
     func prepareaudioPlayer () throws {
         guard let filePathURL = receivedAudio.filePathURL
             else {
-                print("Error getting audo file path")
+                print("Error getting audio file path")
                 throw AudioPlayerError.FileNotFound
         }
 
