@@ -104,7 +104,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     @IBAction func stopButtonTapped(sender: AnyObject) {
         recordingState = .Stopped
         pausePlayLabel.text = "Pause"
-        recordingStatuslLabel.hidden = true
         
         audioRecorder.stop()
         let audioSession = AVAudioSession.sharedInstance()
@@ -124,10 +123,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         
         if (flag) {
-            recordedAudio = RecordedAudio();
-            recordedAudio.filePathURL = recorder.url
-            recordedAudio.title = recorder.url.lastPathComponent
-            
+            recordedAudio = RecordedAudio(withFilePathUrl: recorder.url, fileName: recorder.url.lastPathComponent!);
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         }
         
@@ -136,7 +132,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     func visualSetupBeforeRecordStart () {
         recordButton.enabled = true
-        recordingStatuslLabel.text = "Tap on Mic to start recording voice"
+        recordingStatuslLabel.text = "Tap to Record!"
         pausePlayLabel.text = "Pause"
         pausePlayButton.hidden = true
         pausePlayLabel.hidden = true

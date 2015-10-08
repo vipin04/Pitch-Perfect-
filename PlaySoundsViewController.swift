@@ -91,6 +91,8 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithSpeed(playBackSpeed: Float) {
         audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
         audioPlayer.rate = playBackSpeed
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
@@ -108,7 +110,7 @@ class PlaySoundsViewController: UIViewController {
                 print("Error getting audo file path")
                 throw AudioPlayerError.FileNotFound
         }
-        
+
         try audioPlayer = AVAudioPlayer(contentsOfURL: filePathURL)
         try audioFile =  AVAudioFile(forReading: filePathURL)
         audioPlayer.prepareToPlay()
