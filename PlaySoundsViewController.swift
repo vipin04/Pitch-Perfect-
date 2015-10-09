@@ -9,6 +9,11 @@
 import UIKit
 import AVFoundation
 
+
+enum AudioPlayerError : ErrorType {
+    case FileNotFound
+}
+
 class PlaySoundsViewController: UIViewController {
     
     var audioPlayer:AVAudioPlayer = AVAudioPlayer();
@@ -43,8 +48,9 @@ class PlaySoundsViewController: UIViewController {
     }
     
     @IBAction func stopPressed(sender: UIButton) {
-        stopAudioPlayer()
+        stopAudio()
     }
+    
     
     /**
     Play high pitch sound
@@ -59,12 +65,10 @@ class PlaySoundsViewController: UIViewController {
 
     }
     
-    
-    
-    
     /**
     Play low pitch sound
     */
+    
     @IBAction func playDarthVaderAudio(sender: UIButton) {
         do {
             try playAudioWithVariablePitch(-1000)
@@ -75,39 +79,69 @@ class PlaySoundsViewController: UIViewController {
     }
     
     
+    @IBAction func playWithReverbEffect(sender: AnyObject) {
+        do {
+            try playAudioWithReverbEffect()
+        }
+        catch let unknownError {
+            print(" Unknown error occured: \(unknownError).")
+        }
+    }
     
     
     /**
     Helper function to play variable pitch sound
     
     - parameter pitch: value of pitch variying from -2400 to 2400
-    
     - throws: throws error in case fails to start playing audio
     */
     func playAudioWithVariablePitch(pitch:Float) throws {
-        stopAudioPlayer()
-        
-        let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
         
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
-        
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
 
+        try playAudioWithEffect(changePitchEffect)
+    }
+    
+    
+    func playAudioWithReverbEffect(preset:AVAudioUnitReverbPreset = .LargeHall) throws{
+        
+        let reverbEffect = AVAudioUnitReverb()
+        reverbEffect.loadFactoryPreset(preset)
+        reverbEffect.wetDryMix = 50
+        
+        try playAudioWithEffect(reverbEffect)
+        
+    }
+    
+    
+    /**
+    Generic function with uses AVAudioEngine to help play a sound after adding the sound effect
+    
+    - parameter audioEffect: sound effect
+    - parameter audioFormat: default is nil.
+    
+    */
+    func playAudioWithEffect(audioEffect:AVAudioNode, audioFormat:AVAudioFormat! = nil) throws {
+        stopAudio()
+        
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        audioEngine.attachNode(audioEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: audioEffect, format: audioFormat)
+        audioEngine.connect(audioEffect, to: audioEngine.outputNode, format: audioFormat)
+        
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         try audioEngine.start()
         
         audioPlayerNode.play()
-        
     }
     
     
 
     func playAudioWithSpeed(playBackSpeed: Float) {
-        stopAudioPlayer()
+        stopAudio()
         audioPlayer.rate = playBackSpeed
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
@@ -119,7 +153,8 @@ class PlaySoundsViewController: UIViewController {
         stopPlayButton.enabled = false
     }
     
-    func stopAudioPlayer () {
+    
+    func stopAudio () {
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
@@ -144,9 +179,4 @@ class PlaySoundsViewController: UIViewController {
         audioEngine = AVAudioEngine()
     }
     
-}
-
-
-enum AudioPlayerError : ErrorType {
-    case FileNotFound
 }
