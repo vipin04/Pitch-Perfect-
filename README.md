@@ -1,8 +1,8 @@
 # Pitch-Perfect
-This little app has been created as part of Udacity iOS nanodegree program
 
+Its a fun app that surprise users with sound modulation.
 
-The app records user vocice and replay it with 3 sound effects
+The app records user vocice and replay it with 3 sound effects:
 
 1. Plays with a chipmunk effect (very high pitch)
 2. Plays with Darth Vader effect (very low pitch)
